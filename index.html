@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Callback Hell Task</title>
+</head>
+<body>
+	<h1 id="countdown"></h1>
+	<h2 id="independence-day" style="display: none;">Happy Independence Day!</h2>
+
+	<script>
+		function countdown(callback) {
+			let count = 10;
+			const intervalId = setInterval(() => {
+				document.getElementById('countdown').textContent = count;
+				count--;
+				if (count < 0) {
+					clearInterval(intervalId);
+					callback();
+				}
+			}, 1000);
+		}
+
+		function displayIndependenceDay() {
+			document.getElementById('independence-day').style.display = 'block';
+		}
+
+		// Callback Hell scenario
+		countdown(() => {
+			displayIndependenceDay();
+		});
+	</script>
+</body>
+</html>
